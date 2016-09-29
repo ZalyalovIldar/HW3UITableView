@@ -32,7 +32,7 @@
 - (IBAction)checkSectionSwitch:(id)sender {
     if(self.sectionSwitch.isOn){
         [self.rowSwitch setOn:NO animated:YES];
-    }else if(!self.sectionSwitch.isOn){
+    }else{
         [self.rowSwitch setOn:YES animated:YES];
     }
     [self.tableView reloadData];
@@ -40,7 +40,7 @@
 - (IBAction)checkRowSwitch:(id)sender {
     if(self.rowSwitch.isOn){
         [self.sectionSwitch setOn:NO animated:YES];
-    }else if(!self.rowSwitch.isOn){
+    }else {
         [self.sectionSwitch setOn:YES animated:YES];
     }
     [self.tableView reloadData];
@@ -69,7 +69,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     if (self.rowSwitch.isOn){
         cell.textLabel.text = [NSString stringWithFormat:@"%i", (int)indexPath.row];
-    }else if(self.sectionSwitch.isOn){
+    }else{
         cell.textLabel.text = [NSString stringWithFormat:@"%i", (int)indexPath.section];
     }
     return cell;
@@ -98,14 +98,7 @@
     }
 }
 
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [tableView beginUpdates];
         if(indexPath.section ==0){
             self.firstSectionCountRow-=1;
         }
@@ -115,11 +108,9 @@
         if(indexPath.section ==2){
             self.thirdSectionCountRow-=1;
         }
+        [tableView beginUpdates];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView endUpdates];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,8 +118,35 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
+    if (fromIndexPath != toIndexPath ) {
+        switch (fromIndexPath.section) {
+            case 0:
+                self.firstSectionCountRow-=1;
+                break;
+            case 1:
+                self.secondSectionCountRow-=1;
+                break;
+            case 2:
+                self.thirdSectionCountRow-=1;
+            default:
+                break;
+        }
+        switch (toIndexPath.section) {
+            case 0:
+                self.firstSectionCountRow+=1;
+                break;
+            case 1:
+                self.secondSectionCountRow+=1;
+                break;
+            case 2:
+                self.thirdSectionCountRow+=1;
+                break;
+            default:
+                break;
+        }
+    }
+}
 
 - (IBAction)refreshTableButton:(id)sender {
     self.firstSectionCountRow = [self.data getFirstRowCount];

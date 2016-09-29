@@ -10,10 +10,11 @@
 
 @interface DataUIView : UIView
 
--(NSMutableArray *) getArrayWithLabel;
--(NSMutableArray *) getArrayWithDetailLabel;
+-(NSMutableArray *) getArrayWithLabelText;
+-(NSMutableArray *) getArrayWithDetailLabelText;
 -(int)getFirstRowCount;
 -(int)getSecondRowCount;
 -(int)getThirdRowCount;
+-(UIColor *)getRandomUIColor;
 
 @end

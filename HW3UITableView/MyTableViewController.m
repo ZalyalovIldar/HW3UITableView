@@ -13,7 +13,6 @@
 
 @property (strong, nonatomic) NSMutableArray *arrayWithLabelText;
 @property (strong, nonatomic) NSMutableArray *arrayWithDetailLabelText;
-@property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) DataUIView *data;
 
 @end
@@ -23,14 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.data = [[DataUIView alloc]init];
-    self.arrayWithLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithLabel]];
-    self.arrayWithDetailLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithDetailLabel]];
+    self.arrayWithLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithLabelText]];
+    self.arrayWithDetailLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithDetailLabelText]];
     self.refreshControl = [[UIRefreshControl alloc]init];
     [self.tableView addSubview:self.refreshControl];
     [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
-    
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
@@ -47,13 +45,9 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat hue = ( arc4random() % 256 / 256.0 );  //  0.0 to 1.0
-    CGFloat saturation = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from white
-    CGFloat brightness = ( arc4random() % 128 / 256.0 ) + 0.5;  //  0.5 to 1.0, away from black
-    UIColor *color = [UIColor colorWithHue:hue saturation:saturation brightness:brightness alpha:1];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    cell.backgroundColor = color;
+    cell.backgroundColor = [self.data getRandomUIColor];
     cell.textLabel.text = [NSString stringWithFormat:@"%@%i",[self.arrayWithLabelText objectAtIndex:indexPath.row], (int)indexPath.row];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@%i",[self.arrayWithDetailLabelText objectAtIndex:indexPath.row], (int)indexPath.section];
     return cell;
@@ -67,15 +61,11 @@
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
         [tableView beginUpdates];
         [self.arrayWithLabelText removeObjectAtIndex:indexPath.row];
         [self.arrayWithDetailLabelText removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView endUpdates];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
 }
 
 
@@ -85,11 +75,12 @@
 - (void)refreshTable {
     [self.refreshControl endRefreshing];
     if(self.arrayWithLabelText.count==0){
-        self.arrayWithLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithLabel]];
-        self.arrayWithDetailLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithDetailLabel]];
+        self.arrayWithLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithLabelText]];
+        self.arrayWithDetailLabelText = [NSMutableArray arrayWithArray:[self.data getArrayWithDetailLabelText]];
     }
     [self.tableView reloadData];
 }
+
 
 
 // Override to support conditional rearranging of the table view.
