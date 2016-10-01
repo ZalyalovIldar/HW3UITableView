@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		7C7072CE1D9ADAFF00086896 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7072CD1D9ADAFF00086896 /* main.m */; };
 		7C7072D11D9ADAFF00086896 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7072D01D9ADAFF00086896 /* AppDelegate.m */; };
-		7C7072D41D9ADAFF00086896 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7072D31D9ADAFF00086896 /* ViewController.m */; };
 		7C7072D71D9ADAFF00086896 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C7072D51D9ADAFF00086896 /* Main.storyboard */; };
 		7C7072D91D9ADAFF00086896 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C7072D81D9ADAFF00086896 /* Assets.xcassets */; };
 		7C7072DC1D9ADAFF00086896 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C7072DA1D9ADAFF00086896 /* LaunchScreen.storyboard */; };
+		9952DD831D9D1B1E001BDAB9 /* DataUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9952DD821D9D1B1E001BDAB9 /* DataUIView.m */; };
+		9952DD861D9DAEB2001BDAB9 /* TableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9952DD851D9DAEB2001BDAB9 /* TableVC.m */; };
+		9974129A1D9BA9EA0043EB55 /* FirstScenVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 997412991D9BA9EA0043EB55 /* FirstScenVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +22,16 @@
 		7C7072CD1D9ADAFF00086896 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C7072CF1D9ADAFF00086896 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7C7072D01D9ADAFF00086896 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7C7072D21D9ADAFF00086896 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7C7072D31D9ADAFF00086896 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7C7072D61D9ADAFF00086896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7C7072D81D9ADAFF00086896 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C7072DB1D9ADAFF00086896 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C7072DD1D9ADAFF00086896 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9952DD811D9D1B1E001BDAB9 /* DataUIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataUIView.h; sourceTree = "<group>"; };
+		9952DD821D9D1B1E001BDAB9 /* DataUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataUIView.m; sourceTree = "<group>"; };
+		9952DD841D9DAEB2001BDAB9 /* TableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableVC.h; sourceTree = "<group>"; };
+		9952DD851D9DAEB2001BDAB9 /* TableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableVC.m; sourceTree = "<group>"; };
+		997412981D9BA9EA0043EB55 /* FirstScenVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstScenVC.h; sourceTree = "<group>"; };
+		997412991D9BA9EA0043EB55 /* FirstScenVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstScenVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,15 +64,12 @@
 		7C7072CB1D9ADAFF00086896 /* HW3UITableView */ = {
 			isa = PBXGroup;
 			children = (
-				7C7072CF1D9ADAFF00086896 /* AppDelegate.h */,
-				7C7072D01D9ADAFF00086896 /* AppDelegate.m */,
-				7C7072D21D9ADAFF00086896 /* ViewController.h */,
-				7C7072D31D9ADAFF00086896 /* ViewController.m */,
+				997412961D9BA9A80043EB55 /* 1-st scen */,
+				997412971D9BA9B80043EB55 /* 2 scen */,
 				7C7072D51D9ADAFF00086896 /* Main.storyboard */,
-				7C7072D81D9ADAFF00086896 /* Assets.xcassets */,
-				7C7072DA1D9ADAFF00086896 /* LaunchScreen.storyboard */,
-				7C7072DD1D9ADAFF00086896 /* Info.plist */,
 				7C7072CC1D9ADAFF00086896 /* Supporting Files */,
+				9952DD811D9D1B1E001BDAB9 /* DataUIView.h */,
+				9952DD821D9D1B1E001BDAB9 /* DataUIView.m */,
 			);
 			path = HW3UITableView;
 			sourceTree = "<group>";
@@ -74,9 +77,32 @@
 		7C7072CC1D9ADAFF00086896 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7C7072CF1D9ADAFF00086896 /* AppDelegate.h */,
+				7C7072D01D9ADAFF00086896 /* AppDelegate.m */,
+				7C7072D81D9ADAFF00086896 /* Assets.xcassets */,
+				7C7072DA1D9ADAFF00086896 /* LaunchScreen.storyboard */,
+				7C7072DD1D9ADAFF00086896 /* Info.plist */,
 				7C7072CD1D9ADAFF00086896 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		997412961D9BA9A80043EB55 /* 1-st scen */ = {
+			isa = PBXGroup;
+			children = (
+				997412981D9BA9EA0043EB55 /* FirstScenVC.h */,
+				997412991D9BA9EA0043EB55 /* FirstScenVC.m */,
+			);
+			name = "1-st scen";
+			sourceTree = "<group>";
+		};
+		997412971D9BA9B80043EB55 /* 2 scen */ = {
+			isa = PBXGroup;
+			children = (
+				9952DD841D9DAEB2001BDAB9 /* TableVC.h */,
+				9952DD851D9DAEB2001BDAB9 /* TableVC.m */,
+			);
+			name = "2 scen";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,8 +176,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C7072D41D9ADAFF00086896 /* ViewController.m in Sources */,
+				9952DD861D9DAEB2001BDAB9 /* TableVC.m in Sources */,
 				7C7072D11D9ADAFF00086896 /* AppDelegate.m in Sources */,
+				9974129A1D9BA9EA0043EB55 /* FirstScenVC.m in Sources */,
+				9952DD831D9D1B1E001BDAB9 /* DataUIView.m in Sources */,
 				7C7072CE1D9ADAFF00086896 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,6 +337,7 @@
 				7C7072E21D9ADAFF00086896 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
