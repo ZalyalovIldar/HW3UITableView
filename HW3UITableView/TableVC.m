@@ -85,6 +85,9 @@
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [NSString stringWithFormat:@"Section number is %ld", section];
 }
+-(NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+    return [NSString stringWithFormat:@"Cell in section %ld", [tableView.dataSource tableView:tableView numberOfRowsInSection:section]];
+}
 
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

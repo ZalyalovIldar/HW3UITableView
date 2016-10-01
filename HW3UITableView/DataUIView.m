@@ -15,7 +15,7 @@
 }
 
 -(NSMutableArray *) dataArray{
-    NSMutableArray *myArray = [NSMutableArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", @"Five", nil];
+    NSMutableArray *myArray = [NSMutableArray arrayWithObjects:@"One", @"Two", @"Three", @"Four", @"Five",@"One", @"Two", @"Three", @"Four", @"Five", nil];
     return myArray;
 }
 
