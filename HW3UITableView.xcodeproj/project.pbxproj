@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0012D0861D9BEDDA000F60B7 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0012D0851D9BEDDA000F60B7 /* TableViewController.m */; };
 		7C7072CE1D9ADAFF00086896 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7072CD1D9ADAFF00086896 /* main.m */; };
 		7C7072D11D9ADAFF00086896 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7072D01D9ADAFF00086896 /* AppDelegate.m */; };
 		7C7072D41D9ADAFF00086896 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7072D31D9ADAFF00086896 /* ViewController.m */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0012D0841D9BEDDA000F60B7 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
+		0012D0851D9BEDDA000F60B7 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		7C7072C91D9ADAFF00086896 /* HW3UITableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HW3UITableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C7072CD1D9ADAFF00086896 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7C7072CF1D9ADAFF00086896 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 				7C7072D01D9ADAFF00086896 /* AppDelegate.m */,
 				7C7072D21D9ADAFF00086896 /* ViewController.h */,
 				7C7072D31D9ADAFF00086896 /* ViewController.m */,
+				0012D0841D9BEDDA000F60B7 /* TableViewController.h */,
+				0012D0851D9BEDDA000F60B7 /* TableViewController.m */,
 				7C7072D51D9ADAFF00086896 /* Main.storyboard */,
 				7C7072D81D9ADAFF00086896 /* Assets.xcassets */,
 				7C7072DA1D9ADAFF00086896 /* LaunchScreen.storyboard */,
@@ -153,6 +158,7 @@
 				7C7072D41D9ADAFF00086896 /* ViewController.m in Sources */,
 				7C7072D11D9ADAFF00086896 /* AppDelegate.m in Sources */,
 				7C7072CE1D9ADAFF00086896 /* main.m in Sources */,
+				0012D0861D9BEDDA000F60B7 /* TableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +315,7 @@
 				7C7072E21D9ADAFF00086896 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
