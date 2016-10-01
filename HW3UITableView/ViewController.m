@@ -8,22 +8,173 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
+@interface ViewController()  <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISwitch *sectionSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *rowsSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *sectionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *rowsLabel;
+@property (strong, nonatomic) NSArray *sectionsArr;
 @end
 
 @implementation ViewController
 
+- (NSArray *)sections
+{
+       if (!_sectionsArr)
+            {
+                    _sectionsArr = @[@[@"0", @"1", @"2", @"3"], @[@"0", @"1", @"2", @"3", @"4"], @[@"0",@"1",@"2"]];
+               }
+        return _sectionsArr;
+    }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    [self.sectionSwitch setOn:NO animated:YES];
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        self.sectionLabel.text = @"Show section index in cells";
+        [self.sectionLabel setFont:[UIFont boldSystemFontOfSize:16]];
+        [_sectionLabel sizeToFit];
+        self.rowsLabel.text = @"Show rows index in cell";
+        [self.rowsLabel setFont:[UIFont boldSystemFontOfSize:16]];
+    
+        [self.rowsLabel sizeToFit];
+
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+        [super setEditing:editing animated:animated];
+    
+        [self.tableView setEditing:editing animated:animated];
+    }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
 }
 
+
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+#warning Incomplete implementation, return the number of sections
+    return self.sectionsArr.count;
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#warning Incomplete implementation, return the number of rows
+    return [self.sectionsArr[section] count];
+    
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"sell" forIndexPath:indexPath];
+    
+    // Configure the cell...
+    if (self.rowsSwitch.isOn) {
+                    cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.row];
+                    [cell.textLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                } else {
+                            cell.textLabel.text = [NSString stringWithFormat:@"%ld", (long)indexPath.section];
+                            [cell.textLabel setFont:[UIFont boldSystemFontOfSize:16]];
+                    
+                        }
+    return cell;
+}
+
+// Override to support conditional editing of the table view.
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+// Override to support editing the table view.
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [tableView beginUpdates];
+                NSArray *rows = self.sections[indexPath.section];
+                NSMutableArray *mutableRows = [rows mutableCopy];
+                [mutableRows removeObjectAtIndex:indexPath.row];
+                NSMutableArray *mutableSections = [self.sections mutableCopy];
+                mutableSections[indexPath.section] = [mutableRows copy];
+                self.sectionsArr = [mutableSections copy];
+        
+                [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+                [tableView endUpdates];
+
+    }
+}
+
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    NSArray *fromRows = self.sections[fromIndexPath.section];
+        NSArray *toRows = self.sections[toIndexPath.section];
+    
+        NSMutableArray *mutableFromRows = [fromRows mutableCopy];
+        NSMutableArray *mutableToRows = [toRows mutableCopy];
+    
+        id temp = mutableFromRows[fromIndexPath.row];
+        [mutableFromRows removeObjectAtIndex:fromIndexPath.row];
+        [mutableToRows insertObject:temp atIndex:toIndexPath.row];
+    
+        NSMutableArray *mutableSections = [self.sections mutableCopy];
+    
+        mutableSections[fromIndexPath.section] = [mutableFromRows copy];
+        mutableSections[toIndexPath.section] = [mutableToRows copy];
+    
+        self.sectionsArr = [mutableSections copy];
+    
+}
+
+// Override to support conditional rearranging of the table view.
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Return NO if you do not want the item to be re-orderable.
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+        return UITableViewCellEditingStyleDelete;
+    }
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *sectionTitle;
+        sectionTitle = [NSString stringWithFormat:@"SECTION NUMBER IS : %ld", section];
+        return sectionTitle;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
+    NSString *sectionFooter;
+        sectionFooter = [NSString stringWithFormat:@"Total object count in section :  %ld",[self.sections[section] count]];
+        return sectionFooter;
+}
+
+#pragma mark Actions
+- (IBAction)refreshButtonDidClicked:(id)sender
+{
+        self.sectionsArr = nil;
+        [self.tableView reloadData];
+    }
+
+
+- (IBAction)checkSectionSwitch:(id)sender
+{
+        [self.rowsSwitch setOn:!self.sectionSwitch.isOn animated:YES];
+        [self.tableView reloadData];
+    }
+
+- (IBAction)checkRowSwitch:(id)sender {
+    
+        [self.sectionSwitch setOn:!self.rowsSwitch.isOn animated:YES];
+        [self.tableView reloadData];
+    }
 
 @end
