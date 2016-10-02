@@ -31,8 +31,9 @@
 - (void)viewDidLoad {
    [super viewDidLoad];
     
+    
+    
     self.refreshControl = [UIRefreshControl new];
-    self.refreshControl = self.refreshControl;
     [self.refreshControl addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;

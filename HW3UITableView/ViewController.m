@@ -125,24 +125,29 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         
-        [tableView beginUpdates];
         NSArray *rows = self.sections[indexPath.section];
         NSMutableArray *mutableRows = [rows mutableCopy];
         [mutableRows removeObjectAtIndex:indexPath.row];
         NSMutableArray *mutableSections = [self.sections mutableCopy];
         mutableSections[indexPath.section] = [mutableRows copy];
         self.sections = [mutableSections copy];
+        [tableView beginUpdates];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [tableView endUpdates];
        
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        
+    
     }
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    
+    if (fromIndexPath.section == toIndexPath.section)
+    {
+        return;
+    }
     
     NSArray *fromRows = self.sections[fromIndexPath.section];
     NSArray *toRows = self.sections[toIndexPath.section];
@@ -151,6 +156,7 @@
     
     NSMutableArray *mutableFromRows = [fromRows mutableCopy];
     NSMutableArray *mutableToRows = [toRows mutableCopy];
+    
     
     id temp = mutableFromRows[fromIndexPath.row];
     [mutableFromRows removeObjectAtIndex:fromIndexPath.row];
@@ -166,6 +172,7 @@
 }
 
 #pragma mark Table View Delegate
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return UITableViewCellEditingStyleDelete;
