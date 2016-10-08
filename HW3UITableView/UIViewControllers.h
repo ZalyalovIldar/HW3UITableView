@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  UIViewControllers.h
 //  HW3UITableView
 //
-//  Created by Ildar Zalyalov on 27.09.16.
+//  Created by Rustam N on 29.09.16.
 //  Copyright © 2016 com.ildar.itis. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface UIViewControllers : UIViewController
 
 @end
-
